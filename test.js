@@ -73,7 +73,7 @@ bus.trigger('initialized');
 
 scenario("Table shows data", () => {
 
-loadPage("table/render");
+	loadPage("table/render");
 
 	const w = findWidget('RenderTable');
 	w
@@ -87,4 +87,5 @@ loadPage("table/render");
 			.should.be.equal('5.00')
 	;
 
+	findWidget('RenderTable');
 });
