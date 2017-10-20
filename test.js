@@ -1,5 +1,5 @@
-
-const {log, describeInstance} = require('./lib/log-util');
+const log = require('logia')("yemen/test");
+const {describeInstance} = require('./lib/log-util');
 
 class Widget {
 	constructor() {//webElement) {
@@ -33,7 +33,7 @@ class Cell {
 
 class Table extends Widget {
 	getCell(row, col) {
-		log(`invoked ${describeInstance(this)}.getCell(${JSON.stringify(row)}, ${JSON.stringify(col)})`);
+		log.trace(`invoked ${describeInstance(this)}.getCell(${JSON.stringify(row)}, ${JSON.stringify(col)})`);
 		// const cellWebElement = this.webElement.element(`.grid-viewport .row${row}.col${col}`);
 		// waitFor(cellWebElement);
 		return new Cell();//cellWebElement);
@@ -59,10 +59,10 @@ bus.subscribe({
 	onRegisterActions(actionRegistry) {
 		actionRegistry.push(
 			new RootAction("loadPage", (pageUri) => {
-				log(`loading page ${pageUri}`);
+				log.trace(`loading page ${pageUri}`);
 			}),
 			new RootAction("findWidget", (name) => {
-				log(`find widget with name: ${name}`);
+				log.trace(`find widget with name: ${name}`);
 				return new Table();
 			})
 		);
